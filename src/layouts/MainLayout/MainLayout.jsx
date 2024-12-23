@@ -3,6 +3,8 @@ import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import { Outlet } from 'react-router-dom';
 import RightLayout from '../RightLayout';
+import HeadTitle from '../../components/Header/HeadTitle';
+import LatestBlog from '../../components/Header/LatestBlog';
 
 const MainLayout = () => {
   return (
@@ -10,7 +12,9 @@ const MainLayout = () => {
 
       <header>
       <div>
+        <HeadTitle></HeadTitle>
         <Navbar></Navbar>
+        <LatestBlog></LatestBlog>
       </div>
       </header>
 

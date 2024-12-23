@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { motion } from 'framer-motion';
 
-const Navbar = () => {
-  const { user } = useContext(AuthContext);
-  console.log(user);
-
+const NavAccount = () => {
+  const letters = "The Content Hub".split(""); // Split each character into an array
   return (
     <div className="navbar bg-base-100 px-3">
       {/* Navbar Start */}
@@ -55,22 +53,19 @@ const Navbar = () => {
           </ul>
         </div>
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div>
-            <img
-              className="h-10 w-10 rounded-full ml-3"
-              src={
-                user
-                  ? user?.photoURL
-                  : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-              }
-              alt="User Avatar"
-            />
-          </div>
-          <div>
-            <p className="text-xl font-bold">{ user ?user.displayName : 'User'}</p>
-          </div>
+        <div className="w-[34%] justify-center text-2xl font-bold flex space-x-1">
+          {letters.map((letter, index) => (
+            <motion.span
+              key={index}
+              whileHover={{ scale: 1.5, color: "#ff5722" }}
+              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              className="cursor-pointer"
+            >
+              {letter === " " ? "\u00A0" : letter}
+            </motion.span>
+          ))}
         </div>
+        {/* End */}
       </div>
 
       {/* Navbar Center */}
@@ -109,4 +104,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavAccount;
