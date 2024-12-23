@@ -177,8 +177,8 @@ const SignUp = ({ darkMode }) => {
           </button>
           <p className="text-sm text-center py-1 text-white">
             Already have an account?{" "}
-            <Link to="/auth/login" className="text-blue-600">
-              Login here
+            <Link to="/Account/signin" className="text-blue-600">
+              Sign in here
             </Link>
           </p>
           <button

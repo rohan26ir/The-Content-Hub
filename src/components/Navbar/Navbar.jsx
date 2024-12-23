@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   console.log(user);
 
   return (
@@ -37,38 +37,25 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow absolute"
           >
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Add-Blog">Add Blog</NavLink>
-            </li>
-            <li>
-              <NavLink to="/All-blogs">All Blogs</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Featured-Blogs">Featured Blogs</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Wishlist">Wishlist</NavLink>
-            </li>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/Add-Blog">Add Blog</NavLink></li>
+            <li><NavLink to="/All-blogs">All Blogs</NavLink></li>
+            <li><NavLink to="/Featured-Blogs">Featured Blogs</NavLink></li>
+            <li><NavLink to="/Wishlist">Wishlist</NavLink></li>
           </ul>
         </div>
-        {/* Logo */}
+
+        {/* Logo and User Info */}
         <div className="flex items-center gap-2">
           <div>
             <img
               className="h-10 w-10 rounded-full ml-3"
-              src={
-                user
-                  ? user?.photoURL
-                  : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-              }
-              alt="User Avatar"
+              src={user ? user?.photoURL : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+              alt={user ? `${user.displayName} Avatar` : "User Avatar"}
             />
           </div>
           <div>
-            <p className="text-xl font-bold">{ user ?user.displayName : 'User'}</p>
+            <p className="text-xl font-bold">{user ? user.displayName : 'User'}</p>
           </div>
         </div>
       </div>
@@ -77,33 +64,34 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <div className="bg-base-200 p-2 rounded-box py-1 px-3">
           <ul className="menu menu-horizontal px-1 gap-3">
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Add-Blog">Add Blog</NavLink>
-            </li>
-            <li>
-              <NavLink to="/All-blogs">All Blogs</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Featured-Blogs">Featured Blogs</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Wishlist">Wishlist</NavLink>
-            </li>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/Add-Blog">Add Blog</NavLink></li>
+            <li><NavLink to="/All-blogs">All Blogs</NavLink></li>
+            <li><NavLink to="/Featured-Blogs">Featured Blogs</NavLink></li>
+            <li><NavLink to="/Wishlist">Wishlist</NavLink></li>
           </ul>
         </div>
       </div>
 
       {/* Navbar End */}
       <div className="navbar-end gap-2">
-        <NavLink to="/Account/signup" className="btn btn-primary">
-          Sign Up
-        </NavLink>
-        <NavLink to="/Account/signin" className="btn btn-secondary">
-          Sign In
-        </NavLink>
+        {user ? (
+          <button
+            onClick={logOut}
+            className="px-4 py-1 bg-red-600 hover:bg-rose-700 text-white font-semibold rounded-md"
+          >
+            Log Out
+          </button>
+        ) : (
+          <div className="flex gap-2">
+            <NavLink to="/Account/signup" className="btn btn-primary">
+              Sign Up
+            </NavLink>
+            <NavLink to="/Account/signin" className="btn btn-secondary">
+              Sign In
+            </NavLink>
+          </div>
+        )}
       </div>
     </div>
   );
