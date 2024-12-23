@@ -19,12 +19,12 @@ const MainLayout = () => {
       </header>
 
       {/* Main */}
-      <main className='w-11/12 mx-auto my-5 '>
+      <main className='w-11/12 min-h-screen mx-auto my-5 '>
         <div className='flex'>
           <div className='w-3/4'>
           <Outlet></Outlet>
           </div>
-          <div className='w-1/4'>
+          <div className='w-2/5'>
             <RightLayout></RightLayout>
           </div>
         </div>
