@@ -2,10 +2,15 @@ import React from 'react';
 import SocialBars from '../components/Social/SocialBars';
 import RecentPost from './MainLayout/RecentPost';
 import Newsletter from './MainLayout/RightBar/Newsletter';
+import Loading from '../components/Loading/Loading';
 
 const RightLayout = () => {
   return (
     <div>
+
+      <div>
+        {/* <Loading></Loading> */}
+      </div>
 
       <div>
         <RecentPost></RecentPost>

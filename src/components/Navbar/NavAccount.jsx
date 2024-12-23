@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { motion } from 'framer-motion';
+import DarkMode from "../DarkMode/DarkMode";
 
 const NavAccount = () => {
   const letters = "The Content Hub".split(""); // Split each character into an array
@@ -93,6 +94,9 @@ const NavAccount = () => {
 
       {/* Navbar End */}
       <div className="navbar-end gap-2">
+        <div>
+          <DarkMode></DarkMode>
+        </div>
         <NavLink to="/Account/signup" className="btn btn-primary">
           Sign Up
         </NavLink>
