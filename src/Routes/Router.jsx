@@ -11,6 +11,7 @@ import Wishlist from "../pages/Wishlist/Wishlist";
 import AccountLayout from "../layouts/AccountLayout/AccountLayout";
 import SignUp from "../Account/SingUp";
 import SignIn from "../Account/SignIn";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/Add-Blog',
-        element: <AddBlog></AddBlog>,
+        element: <PrivateRoute><AddBlog></AddBlog></PrivateRoute>,
       },
       {
         path: '/All-blogs',
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/Wishlist",
-        element: <Wishlist></Wishlist>,
+        element: <PrivateRoute><Wishlist></Wishlist></PrivateRoute>
       },
     ],
   },
