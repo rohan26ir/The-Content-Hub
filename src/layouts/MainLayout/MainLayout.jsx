@@ -6,6 +6,7 @@ import RightLayout from "../RightLayout";
 import HeadTitle from "../../components/Header/HeadTitle";
 import LatestBlog from "../../components/Header/LatestBlog";
 import DarkMode from "../../components/DarkMode/DarkMode";
+import Banner from "../../components/Banner/Banner";
 
 const MainLayout = () => {
   return (
@@ -16,6 +17,8 @@ const MainLayout = () => {
           <HeadTitle></HeadTitle>
           <Navbar></Navbar>
           <LatestBlog></LatestBlog>
+
+          <Banner></Banner>
         </div>
       </header>
 
