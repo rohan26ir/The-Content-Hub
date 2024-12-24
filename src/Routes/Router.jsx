@@ -12,6 +12,7 @@ import AccountLayout from "../layouts/AccountLayout/AccountLayout";
 import SignUp from "../Account/SingUp";
 import SignIn from "../Account/SignIn";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import DetailsBlog from "../pages/DetailsBlog/DetailsBlog";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: '/All-blogs',
         element: <AllBlogs></AllBlogs>,
+      },
+      {
+        path: '/blog/:id',
+        element: <PrivateRoute><DetailsBlog></DetailsBlog></PrivateRoute>
       },
       {
         path: '/Featured-Blogs',

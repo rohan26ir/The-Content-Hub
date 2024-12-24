@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'; // Make sure axios is imported
+import { Link } from 'react-router-dom';
 
 const RecentBlogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -18,8 +19,12 @@ const RecentBlogs = () => {
     fetchLatestBlogs();
   }, []);
 
+  // console.log("object:", blogs);
+
   return (
     <div className="container py-8 px-4 md:px-8 mx-auto">
+
+      <h2>Test</h2>
 
       <div className="grid grid-cols-1 gap-10">
         {blogs.map((blog) => (
@@ -44,12 +49,14 @@ const RecentBlogs = () => {
             {/* Footer with Buttons */}
             <div className="px-4 py-3 flex justify-between items-center border-t">
               <div>
+                <Link to={`/api/blog/${blog._id}`}>
                 <button 
                   className="px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-md hover:bg-blue-600 transition duration-300"
                   onClick={() => window.location.href = `/blog/${blog._id}`} // Redirect to details page
                 >
                   Details
                 </button>
+                </Link>
               </div>
               <div>
                 <button 

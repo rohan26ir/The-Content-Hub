@@ -19,6 +19,9 @@ const LatestBlog = () => {
     fetchLatestBlogs();
   }, []);
 
+  // 
+  
+
   return (
     <div className="px-4 my-4">
       {/* Title Section */}

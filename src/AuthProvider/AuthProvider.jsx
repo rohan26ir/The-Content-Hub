@@ -1,3 +1,4 @@
+import axios from "axios"; // Add this import
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -15,27 +16,24 @@ const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
 
-  const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true)
-
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // Create new user
   const createNewUser = (email, password) => {
-    setLoading(true)
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-
-
   // Sign in
   const logIn = (email, password) => {
-    setLoading(true)
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   // Sign in with Google
   const signInWithGoogle = () => {
-    setLoading(true)
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
@@ -45,21 +43,9 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  // Auth state listener
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false)
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
 
 
-  // Dark mood
-
+  // Dark mode
   const [darkMode, setDarkMode] = useState(
     () => localStorage.getItem("theme") === "dark"
   );
@@ -74,7 +60,41 @@ const AuthProvider = ({ children }) => {
     }
   }, [darkMode]);
 
-  // End Dark Mood
+  // onAuthStateChanged
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      console.log("CurrentUser-->", currentUser);
+      if (currentUser?.email) {
+        setUser(currentUser);
+        try {
+          const { data } = await axios.post(
+            `${import.meta.env.VITE_API_URL}/jwt`,
+            {
+              email: currentUser?.email,
+            },
+            { withCredentials: true }
+          );
+          console.log(data);
+        } catch (error) {
+          console.error("Error fetching JWT:", error);
+        }
+      } else {
+        setUser(currentUser);
+        try {
+          const { data } = await axios.get(
+            `${import.meta.env.VITE_API_URL}/logout`,
+            { withCredentials: true }
+          );
+        } catch (error) {
+          console.error("Error during logout:", error);
+        }
+      }
+      setLoading(false);
+    });
+    return () => {
+      return unsubscribe();
+    };
+  }, []);
 
   const authInfo = {
     user,
@@ -85,6 +105,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     setDarkMode,
     darkMode,
+    loading,
   };
 
   return (
