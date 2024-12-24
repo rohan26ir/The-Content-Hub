@@ -49,10 +49,9 @@ const RecentBlogs = () => {
             {/* Footer with Buttons */}
             <div className="px-4 py-3 flex justify-between items-center border-t">
               <div>
-                <Link to={`/api/blog/${blog._id}`}>
+                <Link to={`/blog/${blog._id}`}>
                 <button 
                   className="px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-md hover:bg-blue-600 transition duration-300"
-                  onClick={() => window.location.href = `/blog/${blog._id}`} // Redirect to details page
                 >
                   Details
                 </button>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Marquee from 'react-fast-marquee';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const LatestBlog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -39,7 +40,9 @@ const LatestBlog = () => {
                   href={`/blog/${blog._id}`}
                   className="mx-4 text-blue-600 hover:text-blue-800 font-medium transition duration-300"
                 >
+                  <Link to={`/blog/${blog._id}`}>
                   <li>{blog.title}</li>
+                  </Link>
                 </p>
               ))
             ) : (

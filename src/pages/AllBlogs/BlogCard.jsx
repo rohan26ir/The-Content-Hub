@@ -1,6 +1,7 @@
 import React from "react";
 import { format } from "date-fns";
 import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
 
 const BlogCard = ({ blog }) => {
   const { title, imageUrl, category, shortDescription, author, createdAt } =
@@ -17,9 +18,11 @@ const BlogCard = ({ blog }) => {
           className="w-full h-48 object-cover group-hover:opacity-80 transition-opacity duration-300"
         />
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity ">
+          <Link to={`/blog/${blog._id}`}>
           <button className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-600 transition-colors duration-300 transform">
             View Post
           </button>
+          </Link>
         </div>
       </div>
 
@@ -55,11 +58,19 @@ const BlogCard = ({ blog }) => {
 
       {/* Buttons */}
       <div className="px-6 py-4 flex justify-between text-center bg-gray-50 rounded-b-xl gap-2">
-        <div className=" w-1/2 px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg transform transition-all hover:bg-blue-600 hover:scale-105">
+        <div className="w-1/2">
+        <Link to={`/blog/${blog._id}`}>
+        <p className="px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-md shadow-lg transform transition-all hover:bg-blue-600 hover:scale-105">
           Details
+        </p>
+        </Link>
         </div>
-        <div className="w-1/2 px-4 py-2 bg-gray-300 text-sm font-semibold rounded-md shadow-lg transform transition-all hover:bg-gray-400 hover:scale-105">
+        <div className="w-1/2">
+        <Link>
+        <p className="px-4 py-2 bg-gray-300 text-sm font-semibold rounded-md shadow-lg transform transition-all hover:bg-gray-400 hover:scale-105">
           Add to Wishlist
+        </p>
+        </Link>
         </div>
       </div>
     </div>
