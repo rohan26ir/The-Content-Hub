@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'; // Make sure axios is imported
+import { Link } from 'react-router-dom';
 
 const RecentPost = () => {
   const [blogs, setBlogs] = useState([]);
@@ -24,7 +25,9 @@ const RecentPost = () => {
 
       <div className="space-y-4">
         {blogs.map((blog) => (
-          <div key={blog._id} className="flex items-center gap-4 hover:bg-gray-100 p-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+          
+          <Link to={`/blog/${blog._id}`} key={blog._id}>
+          <div className="flex items-center gap-4 hover:bg-gray-100 p-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
             {/* Blog Image */}
             <div className="flex-shrink-0">
               <img 
@@ -41,6 +44,7 @@ const RecentPost = () => {
               </h3>
             </div>
           </div>
+          </Link>
         ))}
       </div>
     </div>
