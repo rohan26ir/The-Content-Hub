@@ -2,23 +2,23 @@ import React from 'react';
 import SocialBars from '../components/Social/SocialBars';
 import RecentPost from './MainLayout/RecentPost';
 import Newsletter from './MainLayout/RightBar/Newsletter';
-import Loading from '../components/Loading/Loading';
 
 const RightLayout = () => {
   return (
-    <div>
+    <div className='w-11/12 mx-auto'>
 
       <div>
         {/* <Loading></Loading> */}
       </div>
 
       <div>
-        <RecentPost></RecentPost>
+        <SocialBars></SocialBars>
       </div>
       
       <div>
-        <SocialBars></SocialBars>
+        <RecentPost></RecentPost>
       </div>
+      
 
       <div className='border-[2px] p-3 my-3 rounded-lg'>
         <Newsletter></Newsletter>

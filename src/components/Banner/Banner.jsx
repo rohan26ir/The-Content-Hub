@@ -2,7 +2,7 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div className="relative w-full h-[500px] bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 overflow-hidden">
+    <div className="relative w-full h-[300px] bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 overflow-hidden">
       {/* Background Image */}
       <img
         src="https://img.freepik.com/free-vector/gradient-geometric-shapes-dark-background_23-2148435100.jpg?t=st=1734995176~exp=1734998776~hmac=a31b6c652fb57a67a443971b5350a5890f1549e5fd970b44a668baf07a291885&w=996"

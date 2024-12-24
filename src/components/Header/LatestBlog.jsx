@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Marquee from 'react-fast-marquee';
+import axios from 'axios';
 
 const LatestBlog = () => {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    // Fetch latest blogs from the backend
+    const fetchLatestBlogs = async () => {
+      try {
+        const { data } = await axios.get('http://localhost:8000/api/latestBlogs');
+        setBlogs(data);
+      } catch (error) {
+        console.error('Error fetching latest blogs:', error);
+      }
+    };
+
+    fetchLatestBlogs();
+  }, []);
+
   return (
     <div className="px-4 my-4">
       {/* Title Section */}
@@ -12,15 +29,19 @@ const LatestBlog = () => {
         {/* Marquee Section */}
         <div className="flex-1 overflow-hidden">
           <Marquee pauseOnHover={true} speed={50} gradient={true} gradientWidth={50}>
-            {Array.from({ length: 20 }, (_, index) => (
-              <a
-                key={index}
-                href="#"
-                className="mx-4 text-blue-600 hover:text-blue-800 font-medium transition duration-300"
-              >
-                Blog {index + 1}
-              </a>
-            ))}
+            {blogs.length > 0 ? (
+              blogs.map((blog) => (
+                <p
+                  key={blog._id}
+                  href={`/blog/${blog._id}`}
+                  className="mx-4 text-blue-600 hover:text-blue-800 font-medium transition duration-300"
+                >
+                  <li>{blog.title}</li>
+                </p>
+              ))
+            ) : (
+              <span>Loading latest blogs...</span>
+            )}
           </Marquee>
         </div>
       </div>

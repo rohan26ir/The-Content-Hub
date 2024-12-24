@@ -1,140 +1,167 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import useAuth from '../../hooks/useAuth';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const AddBlog = () => {
-  const { user, darkMode } = useContext(AuthContext);
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
+  const { user, darkMode } = useAuth();
+  const [shortDescription, setShortDescription] = useState('');
+  const [longDescription, setLongDescription] = useState('');
 
-  const themeMode = darkMode
-    ? "bg-black text-white"
-    : "bg-[#FFF5CD] text-black";
+  const themeMode = darkMode ? 'bg-black text-white' : 'bg-white text-black';
 
-  const handleSubmit = (e) => {
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: async (newBlog) => {
+      await axiosSecure.post('/api/addBlog', newBlog);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['blogs'] });
+    },
+    onError: (err) => {
+      console.error(err);
+      toast.error('Failed to add blog');
+    },
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const form = e.target;
+    const title = form.title.value;
+    const imageUrl = form.imageUrl.value;
+    const category = form.category.value;
 
-    const title = e.target.title.value;
-    const imageUrl = e.target.imageUrl.value;
-    const category = e.target.category.value;
-    const shortDescription = e.target.shortDescription.value;
-    const longDescription = e.target.longDescription.value;
-
-    const formData = {
+    const blogData = {
       title,
       imageUrl,
       category,
       shortDescription,
       longDescription,
+      author: {
+        name: user?.displayName,
+        email: user?.email,
+        photo: user?.photoURL,
+      },
+      createdAt: new Date(),
     };
 
-    console.log(formData);
-
-    // Add API integration or further handling here
+    try {
+      await mutateAsync(blogData); // Pass correct data to mutation
+      toast.success('Blog added successfully!');
+      form.reset();
+      setShortDescription('');
+      setLongDescription('');
+      navigate('/');
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to add blog');
+    }
   };
 
   return (
-    <div className={`max-w-4xl mx-auto mt-10 p-6 rounded-lg shadow-lg ${themeMode}`}>
-      <h2 className="text-2xl font-semibold mb-6 text-center">
-        Add New Blog
-      </h2>
-      <form onSubmit={handleSubmit}>
-        {/* Title */}
-        <div className="mb-4">
-          <label htmlFor="title" className="block font-medium">
-            Title
-          </label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            className="w-full mt-2 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
-            placeholder="Enter blog title"
-            required
-          />
-        </div>
+    <div className={`flex justify-center items-center min-h-screen py-12 ${themeMode}`}>
+      <section className="p-6 mx-auto bg-white rounded-md shadow-md w-11/12"> 
+        <h2 className="text-lg font-semibold text-gray-700 capitalize text-center mb-6">
+          Add a New Blog
+        </h2>
+        <form onSubmit={handleSubmit}>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div>
+              <label className="text-gray-700" htmlFor="title">
+                Title
+              </label>
+              <input
+                id="title"
+                name="title"
+                type="text"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+                placeholder="Enter blog title"
+                required
+              />
+            </div>
 
-        {/* Image URL */}
-        <div className="mb-4">
-          <label htmlFor="imageUrl" className="block font-medium">
-            Image URL
-          </label>
-          <input
-            type="text"
-            id="imageUrl"
-            name="imageUrl"
-            className="w-full mt-2 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
-            placeholder="Enter image URL"
-            required
-          />
-        </div>
+            <div>
+              <label className="text-gray-700" htmlFor="imageUrl">
+                Image URL
+              </label>
+              <input
+                id="imageUrl"
+                name="imageUrl"
+                type="text"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+                placeholder="Enter image URL"
+                required
+              />
+            </div>
 
-        {/* Category */}
-        <div className="mb-4">
-          <label htmlFor="category" className="block font-medium">
-            Category
-          </label>
-          <select
-            id="category"
-            name="category"
-            className="w-full mt-2 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
-            required
-          >
-            <option value="" disabled>
-              Select a category
-            </option>
-            <option value="Technology">Technology</option>
-            <option value="Health">Health</option>
-            <option value="Education">Education</option>
-            <option value="Lifestyle">Lifestyle</option>
-            <option value="Travel">Travel</option>
-          </select>
-        </div>
+            <div>
+              <label className="text-gray-700" htmlFor="category">
+                Category
+              </label>
+              <select
+                id="category"
+                name="category"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+                required
+              >
+                <option value="" disabled>Select a category</option>
+                <option value="Technology">Technology</option>
+                <option value="Health">Health</option>
+                <option value="Education">Education</option>
+                <option value="Lifestyle">Lifestyle</option>
+                <option value="Travel">Travel</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
 
-        {/* Short Description */}
-        <div className="mb-4">
-          <label
-            htmlFor="shortDescription"
-            className="block font-medium"
-          >
-            Short Description
-          </label>
-          <textarea
-            id="shortDescription"
-            name="shortDescription"
-            className="w-full mt-2 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
-            placeholder="Write a short description (max 150 characters)"
-            maxLength={150}
-            rows={3}
-            required
-          ></textarea>
-        </div>
+          <div className="flex flex-col gap-2 mt-4">
+            <label className="text-gray-700" htmlFor="shortDescription">
+              Short Description
+            </label>
+            <textarea
+              id="shortDescription"
+              name="shortDescription"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+              placeholder="Write a short description (max 200 characters)"
+              maxLength={150}
+              rows={3}
+              value={shortDescription}
+              onChange={(e) => setShortDescription(e.target.value)}
+              required
+            ></textarea>
+          </div>
 
-        {/* Long Description */}
-        <div className="mb-6">
-          <label
-            htmlFor="longDescription"
-            className="block font-medium"
-          >
-            Long Description
-          </label>
-          <textarea
-            id="longDescription"
-            name="longDescription"
-            className="w-full mt-2 p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
-            placeholder="Write a detailed description"
-            rows={6}
-            required
-          ></textarea>
-        </div>
+          <div className="flex flex-col gap-2 mt-4">
+            <label className="text-gray-700" htmlFor="longDescription">
+              Long Description
+            </label>
+            <textarea
+              id="longDescription"
+              name="longDescription"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+              placeholder="Write a detailed description"
+              rows={6}
+              value={longDescription}
+              onChange={(e) => setLongDescription(e.target.value)}
+              required
+            ></textarea>
+          </div>
 
-        {/* Submit Button */}
-        <div className="text-center">
-          <button
-            type="submit"
-            className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
-          >
-            Submit Blog
-          </button>
-        </div>
-      </form>
+          <div className="flex justify-end mt-6">
+            <button
+              className={`px-8 py-2.5 text-white transition-colors duration-300 transform rounded-md ${isPending ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
+              disabled={isPending}
+            >
+              {isPending ? 'Saving...' : 'Publish'}
+            </button>
+          </div>
+        </form>
+      </section>
     </div>
   );
 };
