@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../../components/Loading/Loading';
+import ShareButtons from '../../components/Social/ShareButtons';
+import Author from '../../components/Author/Author';
+import Comment from '../../components/Comment/Comment';
+import { useContext } from 'react';
+import AuthProvider from '../../AuthProvider/AuthProvider';
 
 const DetailsBlog = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
+
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -21,6 +27,7 @@ const DetailsBlog = () => {
   }, [id]);
 
   const {
+    _id,
     title,
     imageUrl,
     shortDescription,
@@ -75,6 +82,29 @@ const DetailsBlog = () => {
               </p>
             </div>
           </div>
+
+          <div className='flex flex-col md:flex-row  justify-between items-center '>
+            {/* Author */}
+          <div className=''>
+            <Author key={_id} blog={blog}></Author>
+          </div>
+
+            {/* Share Buttons  */}
+          <div>
+          <ShareButtons key={_id} id={_id}></ShareButtons>
+          </div>
+          </div>
+
+
+          {/* CommentSection  */}
+
+          <div>
+            <Comment  
+            blogOwnerEmail={author.email} 
+            blogId={_id} ></Comment>
+          </div>
+
+
         </div>
       ) : (
         <Loading />
