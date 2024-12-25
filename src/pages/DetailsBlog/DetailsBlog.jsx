@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { formatDistanceToNow } from 'date-fns'; // Import date-fns for relative time
 import Loading from '../../components/Loading/Loading';
 
 const DetailsBlog = () => {

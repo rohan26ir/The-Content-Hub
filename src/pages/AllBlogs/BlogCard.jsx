@@ -1,26 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { format } from "date-fns";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import axios from "axios"; // Import axios
-import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const BlogCard = ({ blog }) => {
-  const {user} = useContext(AuthContext);
+
+  const { user } = useContext(AuthContext);
+
 
   const { _id, title, imageUrl, category, shortDescription, author, createdAt } =
     blog || {};
+    
 
   // Function to handle adding to wishlist
   const handleAddToWishlist = async () => {
     const wishlistItem = {
-      reviewId: blog._id,
+      reviewId: _id,
       userEmail: user.email,
-      userName: user.displayName,
-      title: blog.title,
-      imageUrl: blog.imageUrl,
+      title,
+      imageUrl,
+      category,
     };
+
 
     try {
       const response = await axios.post("http://localhost:8000/addWishlist", wishlistItem);
@@ -30,6 +33,7 @@ const BlogCard = ({ blog }) => {
       alert(error.response?.data?.message || "Failed to add to wishlist");
     }
   };
+
 
   return (
     <div className="max-w-sm bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:shadow-2xl hover:bg-gradient-to-r hover:from-blue-100 hover:to-blue-200 flex flex-col">
