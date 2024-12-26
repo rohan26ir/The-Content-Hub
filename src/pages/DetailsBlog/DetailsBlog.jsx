@@ -6,6 +6,7 @@ import ShareButtons from '../../components/Social/ShareButtons';
 import Author from '../../components/Author/Author';
 import Comment from '../../components/Comment/Comment';
 import useAuth from '../../hooks/useAuth';
+import { Helmet } from 'react-helmet';
 
 const DetailsBlog = () => {
   const { id } = useParams();
@@ -52,6 +53,10 @@ const DetailsBlog = () => {
 
   return (
     <div className={`min-h-screen ${headerBg}`}>
+      <Helmet>
+        <title>Details | The Content Hub</title>
+      </Helmet>
+
       {blog ? (
         <div className={`container mx-auto px-4 py-12 ${themeMode}`}>
           {/* Blog Header */}

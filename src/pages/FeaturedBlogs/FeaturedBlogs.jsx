@@ -10,6 +10,7 @@ import {
 } from '@tanstack/react-table';
 import { BiSolidUpvote, BiSolidDownvote } from "react-icons/bi";
 import useAuth from '../../hooks/useAuth';
+import { Helmet } from 'react-helmet';
 
 const FeaturedBlogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -84,6 +85,10 @@ const FeaturedBlogs = () => {
 
   return (
     <div className={`container mx-auto py-8 px-4 md:px-8 ${themeMode}`}>
+      <Helmet>
+        <title>Featured Blogs | The Content Hub</title>
+      </Helmet>
+
       <h2 className="text-2xl font-semibold mb-6 text-center">
         Featured Blogs
       </h2>

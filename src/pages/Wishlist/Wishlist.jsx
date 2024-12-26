@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'; // Import SweetAlert2
+import { Helmet } from 'react-helmet';
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
@@ -78,6 +79,11 @@ const Wishlist = () => {
 
   return (
     <div className={`container py-8 px-4 md:px-8 mx-auto ${themeMode}`}>
+
+     <Helmet>
+        <title>Wishlist | The Content Hub</title>
+      </Helmet>
+
       <h2 className="text-2xl font-semibold mb-6 text-center">Your Wishlist</h2>
 
       {/* Category Filter Dropdown */}

@@ -6,6 +6,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const SignUp = ({ darkMode }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -110,6 +111,10 @@ const SignUp = ({ darkMode }) => {
     <div
       className={`min-h-screen flex justify-center items-center relative overflow-hidden ${themeMode}`}
     >
+
+      <Helmet>
+        <title>Sign Up | The Content Hub</title>
+      </Helmet>
       <div className={`relative z-10 w-full max-w-md p-2 shadow-xl rounded-lg border my-4 ${authDarkMode ? 'bg-[#2b2b40]' : 'bg-white'}`}>
         <h2
           className={`text-center text-2xl font-bold mx-auto p-2 border-b-[1px] ${authDarkMode ? 'border-gray-400' : 'border-gray-500'} w-[80%] ${authDarkMode ? 'text-[#ffeba7]' : 'text-[#000000]'}`}

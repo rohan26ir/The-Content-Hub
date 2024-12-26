@@ -3,6 +3,7 @@ import axios from "axios";
 import BlogCard from "./BlogCard";
 import NoPost from "../../components/NoPost/NoPost";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const AllBlogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -31,6 +32,11 @@ const AllBlogs = () => {
 
   return (
     <div className={`container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between ${themeMode}`}>
+
+      <Helmet>
+        <title>All Blogs | The Content Hub</title>
+      </Helmet>
+
       <div>
         {/* Filter and Search Container */}
         <div className="flex flex-col sm:flex-row sm:justify-around items-center gap-5">

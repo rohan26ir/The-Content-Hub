@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
+import { Helmet } from 'react-helmet';
 
 const UpdateBlog = () => {
   const { id } = useParams();
@@ -87,6 +88,11 @@ const UpdateBlog = () => {
 
   return (
     <div className={`flex justify-center items-center min-h-screen ${themeMode}`}>
+
+      <Helmet>
+        <title>Update | The Content Hub</title>
+      </Helmet>
+
       <section className={`p-6 rounded-md shadow-md w-11/12 mx-auto ${themeMode}`}>
         <h2 className="text-lg font-semibold capitalize text-center mb-6">Update Blog</h2>
         <form onSubmit={handleSubmit}>

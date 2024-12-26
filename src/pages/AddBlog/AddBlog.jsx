@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet';
 
 const AddBlog = () => {
   const queryClient = useQueryClient();
@@ -64,6 +65,9 @@ const AddBlog = () => {
 
   return (
     <div className={`flex justify-center items-center min-h-screen py-12 ${themeMode}`}>
+      <Helmet>
+        <title>Add Blog | The Content Hub</title>
+      </Helmet>
       <section className={`p-6 mx-auto rounded-md shadow-md w-11/12 ${darkMode ? 'bg-[#333] border border-[#444]' : 'bg-white'}`}>
         <h2 className={`text-lg font-semibold capitalize text-center mb-6 ${darkMode ? 'text-white' : 'text-gray-700'}`}>
           Add a New Blog

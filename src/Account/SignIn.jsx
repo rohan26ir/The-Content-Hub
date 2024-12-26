@@ -86,7 +86,7 @@ const SignIn = () => {
      
 
       <Helmet>
-        <title>Login - The Content Hub</title>
+        <title>Sign In | The Content Hub</title>
       </Helmet>
       
       <div className="w-full max-w-md bg-opacity-90 bg-[#2b2b40] p-5 shadow-xl rounded-lg border border-gray-600">
