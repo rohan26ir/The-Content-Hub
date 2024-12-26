@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import moment from 'moment'; // Import Moment.js
+import { NavLink } from 'react-router-dom';
 
 const HeadTitle = () => {
   const letters = "The Content Hub".split(""); // Split each character into an array
@@ -13,6 +14,7 @@ const HeadTitle = () => {
         <div className="w-1/3"></div>
 
         {/* Center Section: Title with Animation and Date */}
+        <NavLink to={'/'}>
         <div className="w-1/3 mx-auto flex flex-col items-center">
           <div className="text-4xl font-bold flex space-x-1">
             {letters.map((letter, index) => (
@@ -27,9 +29,12 @@ const HeadTitle = () => {
             ))}
           </div>
           <div className="mt-2 text-sm text-gray-600 hidden md:block">
-            <p className="text-base">{currentTime}</p>
+            <p className="text-base min-w-80 text-center">{currentTime}</p>
           </div>
         </div>
+        </NavLink>
+
+
 
         {/* Right Section: Empty Placeholder for Future Use */}
         <div className="w-1/3"></div>

@@ -9,16 +9,24 @@ import {
   getSortedRowModel,
 } from '@tanstack/react-table';
 import { BiSolidUpvote, BiSolidDownvote } from "react-icons/bi";
+import useAuth from '../../hooks/useAuth';
 
 const FeaturedBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [sorting, setSorting] = useState([]);
+  const { darkMode } = useAuth();
+
+  // Set dark and light mode styles
+  const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
+  const tableHeader = darkMode ? 'bg-[#424242] text-white' : 'bg-gray-100 text-black';
+  const tableCell = darkMode ? 'text-white' : 'text-gray-600';
+  const tableRow = darkMode ? 'bg-[#424242] hover:bg-[#555] text-white' : 'bg-white hover:bg-gray-100';
 
   const fetchFeaturedBlogs = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/featuredBlogs');
+      const response = await axios.get('https://the-content-hub-server.vercel.app/api/featuredBlogs');
       setBlogs(response.data);
     } catch (error) {
       setError('Error fetching featured blogs');
@@ -75,8 +83,8 @@ const FeaturedBlogs = () => {
   });
 
   return (
-    <div className="container mx-auto py-8 px-4 md:px-8">
-      <h2 className="text-2xl font-semibold mb-6 text-center text-gray-900">
+    <div className={`container mx-auto py-8 px-4 md:px-8 ${themeMode}`}>
+      <h2 className="text-2xl font-semibold mb-6 text-center">
         Featured Blogs
       </h2>
 
@@ -88,15 +96,15 @@ const FeaturedBlogs = () => {
         <div className="text-center text-gray-500">No featured blogs available.</div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-200 rounded-lg">
-            <thead className="bg-gray-100">
+          <table className="min-w-full border border-gray-200 rounded-lg">
+            <thead className={tableHeader}>
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
                     <th
                       key={header.id}
                       onClick={header.column.getToggleSortingHandler()}
-                      className="py-3 px-6 text-left text-gray-700 font-semibold cursor-pointer"
+                      className="py-3 px-6 text-left font-semibold cursor-pointer"
                     >
                       <div className="flex items-center">
                         {flexRender(
@@ -118,9 +126,9 @@ const FeaturedBlogs = () => {
             </thead>
             <tbody>
               {table.getRowModel().rows.map((row) => (
-                <tr key={row.id} className="border-b border-gray-200">
+                <tr key={row.id} className={tableRow}>
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="py-3 px-6 text-gray-600">
+                    <td key={cell.id} className={`py-3 px-6 ${tableCell}`}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}

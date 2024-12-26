@@ -5,9 +5,15 @@ import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-hot-toast';
 
 const GetComment = ({ blogId, blogOwnerEmail }) => {
-  const { user } = useAuth();
+  const { user, darkMode } = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+
+  const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
+  const commentBg = darkMode ? 'bg-[#424242]' : 'bg-white';
+  const textColor = darkMode ? 'text-white' : 'text-black';
+  const borderColor = darkMode ? 'border-gray-600' : 'border-gray-300';
+  const deleteBtnColor = darkMode ? 'text-red-500 hover:text-red-700' : 'text-red-600 hover:text-red-800';
 
   // Fetch comments
   const { data: comments, isLoading } = useQuery({
@@ -43,7 +49,7 @@ const GetComment = ({ blogId, blogOwnerEmail }) => {
           return (
             <div
               key={comment._id}
-              className="flex items-start mb-4 border-b pb-2 last:border-b-0"
+              className={`flex items-start mb-4 pb-2 last:pb-0 border-b ${borderColor} ${commentBg}`}
             >
               <img
                 src={comment.userProfilePicture}
@@ -51,8 +57,8 @@ const GetComment = ({ blogId, blogOwnerEmail }) => {
                 className="w-10 h-10 rounded-full mr-4"
               />
               <div className="flex-grow">
-                <h4 className="text-sm font-semibold">{comment.userName}</h4>
-                <p className="text-gray-600">{comment.comment}</p>
+                <h4 className={`text-sm font-semibold ${textColor}`}>{comment.userName}</h4>
+                <p className={`text-sm ${textColor}`}>{comment.comment}</p>
                 <p className="text-xs text-gray-400">
                   {new Date(comment.createdAt).toLocaleString()}
                 </p>
@@ -62,7 +68,7 @@ const GetComment = ({ blogId, blogOwnerEmail }) => {
               {isCommentOwner && (
                 <button
                   onClick={() => deleteMutation.mutate(comment._id)}
-                  className="text-red-600 hover:text-red-800 text-sm ml-4"
+                  className={`text-sm ml-4 ${deleteBtnColor}`}
                 >
                   Delete
                 </button>
@@ -71,7 +77,7 @@ const GetComment = ({ blogId, blogOwnerEmail }) => {
           );
         })
       ) : (
-        <p className="text-gray-600">No comments yet.</p>
+        <p className={`text-gray-600 ${textColor}`}>No comments yet.</p>
       )}
     </div>
   );

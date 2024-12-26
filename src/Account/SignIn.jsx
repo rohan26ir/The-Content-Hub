@@ -15,9 +15,8 @@ const SignIn = () => {
   const navigate = useNavigate();
   const emailRef = useRef();
 
-  const themeMode = darkMode
-    ? "bg-gradient-to-br from-[#1a1c2b] via-[#29274c] to-[#4a3b74] text-white"
-    : "bg-[#FFF5CD] text-black";
+  const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
+
   const googleMode = darkMode
   ? " bg-black"
   : " bg-white"
@@ -83,7 +82,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className={`flex pt-16 justify-center items-center p-4 relative overflow-hidden ${themeMode}`}>
+    <div className={`flex pt-16 justify-center items-center p-4 relative overflow-hidden ${themeMode}   h-screen`}>
      
 
       <Helmet>

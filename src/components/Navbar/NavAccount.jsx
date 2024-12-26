@@ -1,72 +1,40 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import DarkMode from "../DarkMode/DarkMode";
+import useAuth from "../../hooks/useAuth";
 
 const NavAccount = () => {
+  const { darkMode } = useAuth();
+
+  // Dark mode theme classes
+  const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
+  const buttonTheme = darkMode ? 'btn-primary' : 'btn-secondary'; // For Sign Up and Sign In buttons
+  const hoverColor = darkMode ? 'hover:text-[#FF5722] text-black' : 'hover:text-[#007BFF]'; // Hover color for links
+
   const letters = "The Content Hub".split(""); // Split each character into an array
+  
   return (
-    <div className="navbar bg-base-100 px-3">
+    <div className={`navbar px-3 ${themeMode}`}>
       {/* Navbar Start */}
       <div className="navbar-start">
         {/* Hamburger Menu for Small Screens */}
-        <div className="dropdown">
-          <button
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost lg:hidden"
-            aria-label="Open Menu"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </button>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow absolute"
-          >
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Add-Blog">Add Blog</NavLink>
-            </li>
-            <li>
-              <NavLink to="/All-blogs">All Blogs</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Featured-Blogs">Featured Blogs</NavLink>
-            </li>
-            <li>
-              <NavLink to="/Wishlist">Wishlist</NavLink>
-            </li>
-          </ul>
-        </div>
+        
         {/* Logo */}
-        <div className="w-[34%] justify-center text-2xl font-bold flex space-x-1">
-          {letters.map((letter, index) => (
-            <motion.span
-              key={index}
-              whileHover={{ scale: 1.5, color: "#ff5722" }}
-              transition={{ type: "spring", stiffness: 300, damping: 10 }}
-              className="cursor-pointer"
-            >
-              {letter === " " ? "\u00A0" : letter}
-            </motion.span>
-          ))}
-        </div>
-        {/* End */}
+        <NavLink to={'/'}>
+          <div className={`w-full justify-center text-2xl font-bold flex space-x-1 text-center lg:w-[34%] lg:justify-start ${themeMode}`}>
+            {letters.map((letter, index) => (
+              <motion.span
+                key={index}
+                whileHover={{ scale: 1.5, color: "#ff5722" }}
+                transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                className={`cursor-pointer text-xl ${hoverColor}`}
+              >
+                {letter === " " ? "\u00A0" : letter}
+              </motion.span>
+            ))}
+          </div>
+        </NavLink>
       </div>
 
       {/* Navbar Center */}
@@ -74,19 +42,19 @@ const NavAccount = () => {
         <div className="bg-base-200 p-2 rounded-box py-1 px-3">
           <ul className="menu menu-horizontal px-1 gap-3">
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/" className={hoverColor}>Home</NavLink>
             </li>
             <li>
-              <NavLink to="/Add-Blog">Add Blog</NavLink>
+              <NavLink to="/Add-Blog" className={hoverColor}>Add Blog</NavLink>
             </li>
             <li>
-              <NavLink to="/All-blogs">All Blogs</NavLink>
+              <NavLink to="/All-blogs" className={hoverColor}>All Blogs</NavLink>
             </li>
             <li>
-              <NavLink to="/Featured-Blogs">Featured Blogs</NavLink>
+              <NavLink to="/Featured-Blogs" className={hoverColor}>Featured Blogs</NavLink>
             </li>
             <li>
-              <NavLink to="/Wishlist">Wishlist</NavLink>
+              <NavLink to="/Wishlist" className={hoverColor}>Wishlist</NavLink>
             </li>
           </ul>
         </div>
@@ -94,13 +62,13 @@ const NavAccount = () => {
 
       {/* Navbar End */}
       <div className="navbar-end gap-2">
-        <div>
-          <DarkMode></DarkMode>
+        <div className="hidden md:block">
+          <DarkMode />
         </div>
-        <NavLink to="/Account/signup" className="btn btn-primary">
+        <NavLink to="/Account/signup" className={`btn ${buttonTheme}`}>
           Sign Up
         </NavLink>
-        <NavLink to="/Account/signin" className="btn btn-secondary">
+        <NavLink to="/Account/signin" className={`btn ${buttonTheme}`}>
           Sign In
         </NavLink>
       </div>

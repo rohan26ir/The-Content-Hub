@@ -57,16 +57,6 @@ const Error = () => {
         transition={{ delay: 0.8, duration: 0.5 }}
         className="flex gap-2 mt-10 flex-col md:flex-row items-center justify-center"
       >
-        <div>
-          <button
-            onClick={handleGoBack}
-            className="text-lg font-bold text-purple-700 px-3 py-1 bg-blue-400 rounded-md hover:bg-blue-500 transition"
-          >
-            Go Back
-          </button>
-        </div>
-
-        <div className="text-gray-600">or</div>
 
         <div>
           <Link

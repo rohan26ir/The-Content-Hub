@@ -9,7 +9,14 @@ const UpdateBlog = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+  const { user, darkMode } = useAuth();
+
+  const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
+  const inputBg = darkMode ? 'bg-[#424242]' : 'bg-white';
+  const inputTextColor = darkMode ? 'text-white' : 'text-black';
+  const borderColor = darkMode ? 'border-gray-600' : 'border-gray-300';
+  const buttonBg = darkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-600 hover:bg-blue-700';
+  const buttonDisabled = darkMode ? 'cursor-not-allowed bg-gray-400' : 'cursor-not-allowed bg-gray-400';
 
   const [blogData, setBlogData] = useState({
     title: '',
@@ -79,15 +86,13 @@ const UpdateBlog = () => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <section className="p-6 bg-white rounded-md shadow-md w-11/12 mx-auto">
-        <h2 className="text-lg font-semibold text-gray-700 capitalize text-center mb-6">
-          Update Blog
-        </h2>
+    <div className={`flex justify-center items-center min-h-screen ${themeMode}`}>
+      <section className={`p-6 rounded-md shadow-md w-11/12 mx-auto ${themeMode}`}>
+        <h2 className="text-lg font-semibold capitalize text-center mb-6">Update Blog</h2>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-6">
             <div>
-              <label htmlFor="title" className="text-gray-700">
+              <label htmlFor="title" className={`text-gray-700 ${inputTextColor}`}>
                 Title
               </label>
               <input
@@ -96,13 +101,13 @@ const UpdateBlog = () => {
                 type="text"
                 value={blogData.title}
                 onChange={handleChange}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+                className={`block w-full px-4 py-2 mt-2 ${inputTextColor} ${inputBg} border ${borderColor} rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none`}
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="imageUrl" className="text-gray-700">
+              <label htmlFor="imageUrl" className={`text-gray-700 ${inputTextColor}`}>
                 Image URL
               </label>
               <input
@@ -111,13 +116,13 @@ const UpdateBlog = () => {
                 type="text"
                 value={blogData.imageUrl}
                 onChange={handleChange}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+                className={`block w-full px-4 py-2 mt-2 ${inputTextColor} ${inputBg} border ${borderColor} rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none`}
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="category" className="text-gray-700">
+              <label htmlFor="category" className={`text-gray-700 ${inputTextColor}`}>
                 Category
               </label>
               <select
@@ -125,7 +130,7 @@ const UpdateBlog = () => {
                 name="category"
                 value={blogData.category}
                 onChange={handleChange}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+                className={`block w-full px-4 py-2 mt-2 ${inputTextColor} ${inputBg} border ${borderColor} rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none`}
                 required
               >
                 <option value="" disabled>
@@ -141,7 +146,7 @@ const UpdateBlog = () => {
             </div>
 
             <div>
-              <label htmlFor="shortDescription" className="text-gray-700">
+              <label htmlFor="shortDescription" className={`text-gray-700 ${inputTextColor}`}>
                 Short Description
               </label>
               <textarea
@@ -149,7 +154,7 @@ const UpdateBlog = () => {
                 name="shortDescription"
                 value={blogData.shortDescription}
                 onChange={handleChange}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+                className={`block w-full px-4 py-2 mt-2 ${inputTextColor} ${inputBg} border ${borderColor} rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none`}
                 maxLength={150}
                 rows={2}
                 required
@@ -157,7 +162,7 @@ const UpdateBlog = () => {
             </div>
 
             <div>
-              <label htmlFor="longDescription" className="text-gray-700">
+              <label htmlFor="longDescription" className={`text-gray-700 ${inputTextColor}`}>
                 Long Description
               </label>
               <textarea
@@ -165,7 +170,7 @@ const UpdateBlog = () => {
                 name="longDescription"
                 value={blogData.longDescription}
                 onChange={handleChange}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+                className={`block w-full px-4 py-2 mt-2 ${inputTextColor} ${inputBg} border ${borderColor} rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none`}
                 rows={6}
                 required
               />
@@ -175,9 +180,7 @@ const UpdateBlog = () => {
           <div className="flex justify-end mt-6">
             <button
               type="submit"
-              className={`px-6 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 ${
-                isUpdating ? 'cursor-not-allowed bg-gray-400' : ''
-              }`}
+              className={`px-6 py-2 text-white ${buttonBg} rounded-md hover:bg-blue-700 ${isUpdating ? buttonDisabled : ''}`}
               disabled={isUpdating}
             >
               {isUpdating ? 'Updating...' : 'Update Blog'}

@@ -1,7 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
+import useAuth from "../../hooks/useAuth";
 
 const Banner = () => {
+  const {darkMode} = useAuth();
+  
+
+  const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
+
+
+
   const handleExploreClick = () => {
     const targetSection = document.getElementById("blogs-section");
     if (targetSection) {
@@ -17,7 +25,7 @@ const Banner = () => {
     <div className="relative w-full h-[300px] bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 overflow-hidden">
       {/* Background Image */}
       <motion.img
-        src="https://img.freepik.com/free-vector/gradient-geometric-shapes-dark-background_23-2148435100.jpg?t=st=1734995176~exp=1734998776~hmac=a31b6c652fb57a67a443971b5350a5890f1549e5fd970b44a668baf07a291885&w=996"
+        src="https://i.ibb.co.com/2qQB7XY/futuristic.webp"
         alt="Blog Banner"
         className="absolute top-0 left-0 w-full h-full object-cover opacity-50"
         animate={{ scale: [1, 1.1, 1] }}

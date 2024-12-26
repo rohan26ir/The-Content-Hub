@@ -13,7 +13,7 @@ const AddBlog = () => {
   const [shortDescription, setShortDescription] = useState('');
   const [longDescription, setLongDescription] = useState('');
 
-  const themeMode = darkMode ? 'bg-black text-white' : 'bg-white text-black';
+  const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
 
   const { isPending, mutateAsync } = useMutation({
     mutationFn: async (newBlog) => {
@@ -64,48 +64,48 @@ const AddBlog = () => {
 
   return (
     <div className={`flex justify-center items-center min-h-screen py-12 ${themeMode}`}>
-      <section className="p-6 mx-auto bg-white rounded-md shadow-md w-11/12"> 
-        <h2 className="text-lg font-semibold text-gray-700 capitalize text-center mb-6">
+      <section className={`p-6 mx-auto rounded-md shadow-md w-11/12 ${darkMode ? 'bg-[#333] border border-[#444]' : 'bg-white'}`}>
+        <h2 className={`text-lg font-semibold capitalize text-center mb-6 ${darkMode ? 'text-white' : 'text-gray-700'}`}>
           Add a New Blog
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-1">
             <div>
-              <label className="text-gray-700" htmlFor="title">
+              <label className={`text-gray-700 ${darkMode ? 'text-white' : ''}`} htmlFor="title">
                 Title
               </label>
               <input
                 id="title"
                 name="title"
                 type="text"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+                className={`block w-full px-4 py-2 mt-2 text-gray-700 ${darkMode ? 'bg-[#444] text-white border-gray-600' : 'bg-white border-gray-200'} border rounded-md focus:outline-none`}
                 placeholder="Enter blog title"
                 required
               />
             </div>
 
             <div>
-              <label className="text-gray-700" htmlFor="imageUrl">
+              <label className={`text-gray-700 ${darkMode ? 'text-white' : ''}`} htmlFor="imageUrl">
                 Image URL
               </label>
               <input
                 id="imageUrl"
                 name="imageUrl"
                 type="text"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+                className={`block w-full px-4 py-2 mt-2 text-gray-700 ${darkMode ? 'bg-[#444] text-white border-gray-600' : 'bg-white border-gray-200'} border rounded-md focus:outline-none`}
                 placeholder="Enter image URL"
                 required
               />
             </div>
 
             <div>
-              <label className="text-gray-700" htmlFor="category">
+              <label className={`text-gray-700 ${darkMode ? 'text-white' : ''}`} htmlFor="category">
                 Category
               </label>
               <select
                 id="category"
                 name="category"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+                className={`block w-full px-4 py-2 mt-2 text-gray-700 ${darkMode ? 'bg-[#444] text-white border-gray-600' : 'bg-white border-gray-200'} border rounded-md focus:outline-none`}
                 required
               >
                 <option value="" disabled>Select a category</option>
@@ -120,13 +120,13 @@ const AddBlog = () => {
           </div>
 
           <div className="flex flex-col gap-2 mt-4">
-            <label className="text-gray-700" htmlFor="shortDescription">
+            <label className={`text-gray-700 ${darkMode ? 'text-white' : ''}`} htmlFor="shortDescription">
               Short Description
             </label>
             <textarea
               id="shortDescription"
               name="shortDescription"
-              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+              className={`block w-full px-4 py-2 mt-2 text-gray-700 ${darkMode ? 'bg-[#444] text-white border-gray-600' : 'bg-white border-gray-200'} border rounded-md focus:outline-none`}
               placeholder="Write a short description (max 200 characters)"
               maxLength={150}
               rows={3}
@@ -137,13 +137,13 @@ const AddBlog = () => {
           </div>
 
           <div className="flex flex-col gap-2 mt-4">
-            <label className="text-gray-700" htmlFor="longDescription">
+            <label className={`text-gray-700 ${darkMode ? 'text-white' : ''}`} htmlFor="longDescription">
               Long Description
             </label>
             <textarea
               id="longDescription"
               name="longDescription"
-              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none"
+              className={`block w-full px-4 py-2 mt-2 text-gray-700 ${darkMode ? 'bg-[#444] text-white border-gray-600' : 'bg-white border-gray-200'} border rounded-md focus:outline-none`}
               placeholder="Write a detailed description"
               rows={6}
               value={longDescription}

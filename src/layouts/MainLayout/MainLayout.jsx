@@ -7,46 +7,61 @@ import HeadTitle from "../../components/Header/HeadTitle";
 import LatestBlog from "../../components/Header/LatestBlog";
 import DarkMode from "../../components/DarkMode/DarkMode";
 import Banner from "../../components/Banner/Banner";
+import useAuth from "../../hooks/useAuth";
 
 const MainLayout = () => {
   const location = useLocation();
+  const { darkMode } = useAuth();
+
+  const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
+  const headerFooterBg = darkMode ? 'bg-[#1f1f1f]' : 'bg-white'; // Dark header/footer bg
+  const contentBg = darkMode ? 'bg-[#181818]' : 'bg-white'; // Dark content bg
 
   return (
-    <div>
+    <div className={`${themeMode} min-h-screen`}>
       {/* Header */}
-      <header>
+      <header className={`${headerFooterBg}`}>
         <div>
           <HeadTitle />
           <Navbar />
-          <LatestBlog />
+          
+          {/* Render Banner only on the Home page */}
+          {location.pathname === "/" && <LatestBlog />}
           {/* Render Banner only on the Home page */}
           {location.pathname === "/" && <Banner />}
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="w-11/12 min-h-screen mx-auto my-5">
-  <div className="flex flex-col md:flex-row">
-    {/* Main Content Area */}
-    <div className="w-full md:w-3/4">
-      <Outlet />
-    </div>
+      <main className={`${themeMode} w-11/12 mx-auto my-5`}>
+        <div className="flex flex-col md:flex-row">
+          {/* Main Content Area */}
+          <div className="w-full md:w-3/4">
+            <Outlet />
+          </div>
 
-    {/* Right Sidebar */}
-    <div className="w-full md:w-2/5 relative mt-5 md:mt-0">
-      <RightLayout />
+          {/* Right Sidebar */}
+          <div className="w-full md:w-2/5 relative mt-5 md:mt-0">
+            <RightLayout />
+          </div>
+        </div>
+      </main>
 
-      {/* Dark Mode Toggle */}
-      <div className="fixed bottom-5 right-5 md:top-1/2 md:-translate-y-1/2 md:-right-1 transform md:rotate-90">
-        <DarkMode />
+      {/* Fixed Dark Mode Toggle */}
+      <div className="hidden md:block">
+        <div className="fixed right-2 rotate-90 top-1/2 transform -translate-y-1/2 z-50">
+          <DarkMode />
+        </div>
       </div>
-    </div>
-  </div>
-</main>
-
+      
+      <div className="md:hidden">
+        <div className="fixed right-2 bottom-0 transform -translate-y-1/2 z-50">
+          <DarkMode />
+        </div>
+      </div>
 
       {/* Footer */}
-      <footer>
+      <footer className={`${headerFooterBg}`}>
         <Footer />
       </footer>
     </div>
