@@ -26,29 +26,34 @@ const AllBlogs = () => {
   return (
     <div className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">
       <div>
-        <div className="flex flex-col md:flex-row justify-around items-center gap-5">
-          <div>
+        {/* Filter and Search Container */}
+        <div className="flex flex-col sm:flex-row sm:justify-around items-center gap-5">
+          {/* Filter Dropdown */}
+          <div className="w-full sm:w-auto">
             <select
               name="category"
               id="category"
-              className="border p-4 rounded-lg"
+              className="w-full sm:w-auto border p-3 md:p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               onChange={(e) => setFilter(e.target.value)}
               value={filter}
             >
-              <option value="" disabled>Filter By Category</option>
+              <option value="" disabled>
+                Filter By Category
+              </option>
               <option value="All">All Category</option>
-                <option value="Technology">Technology</option>
-                <option value="Health">Health</option>
-                <option value="Education">Education</option>
-                <option value="Lifestyle">Lifestyle</option>
-                <option value="Travel">Travel</option>
+              <option value="Technology">Technology</option>
+              <option value="Health">Health</option>
+              <option value="Education">Education</option>
+              <option value="Lifestyle">Lifestyle</option>
+              <option value="Travel">Travel</option>
               <option value="Other">Other</option>
             </select>
           </div>
 
-          <div className="flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
+          {/* Search Bar */}
+          <div className="w-full sm:w-auto flex items-center gap-1 border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
             <input
-              className="px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
+              className="w-full px-3 py-2 md:px-6 md:py-2 text-gray-700 placeholder-gray-500 bg-white rounded-lg outline-none focus:placeholder-transparent"
               type="text"
               name="search"
               onChange={(e) => setSearch(e.target.value)}
@@ -56,7 +61,7 @@ const AllBlogs = () => {
               placeholder="Enter Blog Title"
               aria-label="Enter Blog Title"
             />
-            <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
+            <button className="px-3 md:px-4 py-2 md:py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-lg hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
               Search
             </button>
           </div>
@@ -64,23 +69,14 @@ const AllBlogs = () => {
 
         {/* Conditionally Render Blog Cards or NoPost Component */}
         {blogs.length === 0 ? (
-            <NoPost></NoPost>
-          ) : (
-            <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
-          {blogs.map((blog) => (
+          <NoPost />
+        ) : (
+          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+            {blogs.map((blog) => (
               <BlogCard key={blog._id} blog={blog} />
-            )
-          )}
-        </div>
-          )}
-        {/* <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
-          {blogs.map((blog) => (
-              <BlogCard key={blog._id} blog={blog} />
-            )
-          )}
-        </div> */}
-
-
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

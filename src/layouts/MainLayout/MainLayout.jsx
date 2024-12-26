@@ -26,23 +26,24 @@ const MainLayout = () => {
 
       {/* Main Content */}
       <main className="w-11/12 min-h-screen mx-auto my-5">
-        <div className="flex">
-          {/* Main Content Area */}
-          <div className="w-3/4">
-            <Outlet />
-          </div>
+  <div className="flex flex-col md:flex-row">
+    {/* Main Content Area */}
+    <div className="w-full md:w-3/4">
+      <Outlet />
+    </div>
 
-          {/* Right Sidebar */}
-          <div className="w-2/5 relative">
-            <RightLayout />
+    {/* Right Sidebar */}
+    <div className="w-full md:w-2/5 relative mt-5 md:mt-0">
+      <RightLayout />
 
-            {/* Dark Mode Toggle */}
-            <div className="fixed top-1/2 -translate-y-1/2 -right-1 transform rotate-90">
-              <DarkMode />
-            </div>
-          </div>
-        </div>
-      </main>
+      {/* Dark Mode Toggle */}
+      <div className="fixed bottom-5 right-5 md:top-1/2 md:-translate-y-1/2 md:-right-1 transform md:rotate-90">
+        <DarkMode />
+      </div>
+    </div>
+  </div>
+</main>
+
 
       {/* Footer */}
       <footer>

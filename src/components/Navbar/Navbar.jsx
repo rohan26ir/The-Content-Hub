@@ -11,7 +11,7 @@ const Navbar = () => {
       {/* Navbar Start */}
       <div className="navbar-start">
         {/* Hamburger Menu for Small Screens */}
-        <div className="dropdown">
+        <div className="dropdown z-50">
           <button
             tabIndex={0}
             role="button"
@@ -46,6 +46,7 @@ const Navbar = () => {
         </div>
 
         {/* Logo and User Info */}
+        <div className="hidden md:block">
         <div className="flex items-center gap-2">
           <div>
             <img
@@ -58,6 +59,8 @@ const Navbar = () => {
             <p className="text-xl font-bold">{user ? user.displayName : 'User'}</p>
           </div>
         </div>
+        </div>
+
       </div>
 
       {/* Navbar Center */}
@@ -74,7 +77,27 @@ const Navbar = () => {
       </div>
 
       {/* Navbar End */}
-      <div className="navbar-end gap-2">
+
+      
+
+      <div className="navbar-end gap-2 ">
+
+        <div className="md:hidden ">
+        <div className="flex items-center gap-2">
+          <div>
+            <p className="text-lg font-bold">{user ? user.displayName : 'User'}</p>
+          </div>
+          <div>
+            <img
+              className="h-10 w-10 rounded-full ml-3"
+              src={user ? user?.photoURL : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+              alt={user ? `${user.displayName} Avatar` : "User Avatar"}
+            />
+          </div>
+        </div>
+        </div>
+
+        <div className="hidden md:block">
         {user ? (
           <button
             onClick={logOut}
@@ -92,6 +115,7 @@ const Navbar = () => {
             </NavLink>
           </div>
         )}
+        </div>
       </div>
     </div>
   );

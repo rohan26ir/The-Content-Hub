@@ -33,6 +33,7 @@ const Comment = ({ blogOwnerEmail, blogId }) => {
       comment,
       blogId,
       userName: user.displayName,
+      userEmail: user.email,
       userProfilePicture: user.photoURL,
       createdAt: new Date(),
     };

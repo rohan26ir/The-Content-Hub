@@ -6,13 +6,16 @@ const Author = ({ blog }) => {
 
   return (
     <div className="max-w-sm mx-auto bg-white rounded-lg shadow-lg p-5 border border-gray-200">
-      <div className="flex items-center gap-4">
-        {/* Author's Image */}
+      <div className="flex flex-col lg:flex-row items-center gap-4">
+        
+        <div>
+          {/* Author's Image */}
         <img
           src={author?.photo}
           alt={author?.name}
           className="w-16 h-16 rounded-full border-4 border-blue-500 object-cover"
         />
+        </div>
 
         {/* Author's Name and Bio */}
         <div>

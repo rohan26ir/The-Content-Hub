@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const TopBlog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -30,7 +31,9 @@ const TopBlog = () => {
       <h2 className="text-xl font-bold text-gray-800 mb-4">Popular Posts</h2>
       <ul>
         {blogs.map((blog) => (
-          <li key={blog._id} className="mb-4 flex">
+
+          <Link to={`/blog/${blog._id}`} key={blog._id}>
+          <li className="mb-4 flex">
             <img
               src={blog.imageUrl}
               alt={blog.title}
@@ -45,6 +48,7 @@ const TopBlog = () => {
               </p>
             </div>
           </li>
+          </Link>
         ))}
       </ul>
     </div>

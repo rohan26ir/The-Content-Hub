@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "@tanstack/react-query": "^4.36.1",
+    "@tanstack/react-table": "^8.20.6",
     "axios": "^1.7.9",
     "date-fns": "^4.1.0",
     "firebase": "^11.1.0",

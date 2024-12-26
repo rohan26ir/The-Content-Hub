@@ -47,6 +47,7 @@ const Wishlist = () => {
     }
   };
 
+
   return (
     <div className="container py-8 px-4 md:px-8 mx-auto">
       <h2 className="text-2xl font-semibold mb-6 text-center text-gray-900">Your Wishlist</h2>
@@ -110,14 +111,14 @@ const Wishlist = () => {
                   #{index + 1}
                 </div>
 
+
                 {/* Short description */}
                 <p className="mt-2 text-md text-gray-600">{item.shortDescription}</p>
 
                 {/* Category and Details */}
                 <div className="mt-4 text-sm text-gray-500">
                   <p>Category: <span className="font-semibold">{item.category || 'Uncategorized'}</span></p>
-                  <p>Author: <span className="font-semibold">{item.author || 'Unknown'}</span></p>
-                  <p>Published on: <span className="font-semibold">{item.publishDate || 'N/A'}</span></p>
+                  
                 </div>
 
                 {/* Buttons */}

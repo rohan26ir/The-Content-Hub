@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../../components/Loading/Loading';
 import ShareButtons from '../../components/Social/ShareButtons';
 import Author from '../../components/Author/Author';
 import Comment from '../../components/Comment/Comment';
-import { useContext } from 'react';
-import AuthProvider from '../../AuthProvider/AuthProvider';
+import useAuth from '../../hooks/useAuth';
 
 const DetailsBlog = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { user } = useAuth(); // Get current user details
   const [blog, setBlog] = useState(null);
-
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -35,11 +35,13 @@ const DetailsBlog = () => {
     author,
   } = blog || {};
 
-  
   // Scroll to the top when the component renders
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  // Check if the logged-in user is the blog owner
+  const isBlogOwner = user?.email === author?.email;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white">
@@ -83,28 +85,39 @@ const DetailsBlog = () => {
             </div>
           </div>
 
-          <div className='flex flex-col md:flex-row  justify-between items-center '>
+
+          <div className='flex justify-center -mt-8  mb-5'>
+            {/* Update Button */}
+          {isBlogOwner && (
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={() => navigate(`/update-blog/${id}`)}
+                className="px-4 py-2 bg-rose-600 text-white rounded-md hover:bg-rose-800 font-bold"
+              >
+                Update Blog
+              </button>
+            </div>
+          )}
+          </div>
+
+          <div className="flex flex-col md:flex-row mt-16 justify-between items-center">
             {/* Author */}
-          <div className=''>
-            <Author key={_id} blog={blog}></Author>
+            <div>
+              <Author key={_id} blog={blog}></Author>
+            </div>
+
+            {/* Share Buttons */}
+            <div>
+              <ShareButtons key={_id} id={_id}></ShareButtons>
+            </div>
           </div>
 
-            {/* Share Buttons  */}
+          
+
+          {/* Comment Section */}
           <div>
-          <ShareButtons key={_id} id={_id}></ShareButtons>
+            <Comment blogOwnerEmail={author?.email} blogId={_id} />
           </div>
-          </div>
-
-
-          {/* CommentSection  */}
-
-          <div>
-            <Comment  
-            blogOwnerEmail={author.email} 
-            blogId={_id} ></Comment>
-          </div>
-
-
         </div>
       ) : (
         <Loading />
