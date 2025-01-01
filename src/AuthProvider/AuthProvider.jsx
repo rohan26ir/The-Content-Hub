@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
   // onAuthStateChanged
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      console.log("CurrentUser-->", currentUser);
+      // console.log("CurrentUser-->", currentUser);
       if (currentUser?.email) {
         setUser(currentUser);
         try {
@@ -74,7 +74,7 @@ const AuthProvider = ({ children }) => {
             },
             { withCredentials: true }
           );
-          console.log(data);
+          // console.log(data);
         } catch (error) {
           console.error("Error fetching JWT:", error);
         }
