@@ -12,7 +12,7 @@ const Footer = () => {
 
   return (
     <div >
-      <footer className={`footer p-10 ${themeMode}`}>
+      <footer className={`footer p-5 md:p-10  md:px-16 ${themeMode}`}>
         <aside>
           <div className="flex justify-center items-center">
             <div>
