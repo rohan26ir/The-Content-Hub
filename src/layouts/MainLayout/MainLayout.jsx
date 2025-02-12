@@ -42,7 +42,7 @@ const MainLayout = () => {
       </header>
 
       {/* Main Content */}
-      <main className={`${themeMode} w-11/12 mx-auto my-5`}>
+      <main className={`${themeMode} w-11/12 mx-auto my-10`}>
         <div className="flex flex-col md:flex-row">
           {/* Main Content Area */}
           <div className="w-full md:w-3/4">
