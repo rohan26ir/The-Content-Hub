@@ -30,6 +30,12 @@ const AllBlogs = () => {
     fetchAllBlogs();
   }, [filter, search, sort]);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // Trigger the search functionality
+    setSearch(search);
+  };
+
   return (
     <div className={`container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between ${themeMode}`}>
 
@@ -73,7 +79,10 @@ const AllBlogs = () => {
               placeholder="Enter Blog Title"
               aria-label="Enter Blog Title"
             />
-            <button className={`px-3 md:px-4 py-2 md:py-3 text-sm font-medium tracking-wider uppercase transition-colors duration-300 transform rounded-lg focus:outline-none ${buttonMode}`}>
+            <button
+              onClick={handleSearch}
+              className={`px-3 md:px-4 py-2 md:py-3 text-sm font-medium tracking-wider uppercase transition-colors duration-300 transform rounded-lg focus:outline-none ${buttonMode}`}
+            >
               Search
             </button>
           </div>
