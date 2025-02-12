@@ -15,7 +15,7 @@ const Navbar = () => {
   const buttonMode = darkMode ? "bg-sky-800 text-white" : "bg-gray-200 text-black" ;
 
   return (
-    <div className={`navbar px-2 md:px-6 lg:px-10  ${themeMode} `}>
+    <div className={`navbar px-2 md:px-6 lg:px-10  ${themeMode}  fixed z-50 top-0`}>
       {/* Navbar Start */}
       <div className="navbar-start ">
         {/* Hamburger Menu for Small Screens */}

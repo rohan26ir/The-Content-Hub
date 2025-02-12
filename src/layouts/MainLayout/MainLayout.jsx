@@ -24,9 +24,13 @@ const MainLayout = () => {
       {/* Header */}
       <header className={`${headerFooterBg}  `}>
         <div>
-          <HeadTitle />
+          {/* <HeadTitle /> */}
 
-          <div className="sticky top-0 z-50 ">
+          {/* <div className="sticky z-50 top-0">
+            <Navbar />
+          </div> */}
+
+          <div className=" z-50 top-0">
             <Navbar />
           </div>
 

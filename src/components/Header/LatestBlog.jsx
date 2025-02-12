@@ -10,7 +10,7 @@ const LatestBlog = () => {
 
   // Conditional theme class for dark mode
   const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
-  const titleTheme = darkMode ? 'bg-rose-600 text-white' : 'bg-rose-500 text-white';
+  const titleTheme = darkMode ? 'bg-blue-500 text-white' : 'bg-blue-500 text-white';
   const textLinkColor = darkMode ? 'text-blue-400' : 'text-blue-600';
   const textLinkHoverColor = darkMode ? 'hover:text-blue-600' : 'hover:text-blue-800';
 
