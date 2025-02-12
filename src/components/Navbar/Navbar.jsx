@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
@@ -71,7 +71,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Logo and User Info */}
+        {/* Logo and User Info
         <div className="hidden md:block">
           <div className="flex items-center gap-2">
             <div>
@@ -85,7 +85,13 @@ const Navbar = () => {
               <p className="text-xl font-bold">{user ? user.displayName : ''}</p>
             </div>
           </div>
+        </div> */}
+
+        <div>
+          <Link to={'/'}><h2 className=" text-lg md:text-2xl font-bold">Content Hub</h2></Link>
         </div>
+
+
       </div>
 
       {/* Navbar Center */}
@@ -110,9 +116,7 @@ const Navbar = () => {
       <div className="navbar-end gap-2">
         <div className="md:hidden">
           <div className="flex items-center gap-2">
-            <div>
-              <p className="text-lg font-bold">{user ? user.displayName : 'User'}</p>
-            </div>
+            
             <div>
               <img
                 className="h-10 w-10 rounded-full ml-3"
@@ -123,7 +127,21 @@ const Navbar = () => {
           </div>
         </div>
 
+         {/* Logo and User Info */}
         <div className="hidden md:block">
+          <div className="flex items-center gap-2">
+            <div>
+              <img
+                className="h-10 w-10 rounded-full ml-3"
+                src={user ? user?.photoURL : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                alt={user ? `${user.displayName} Avatar` : "User Avatar"}
+              />
+            </div>
+            
+          </div>
+        </div>
+        <div className="hidden md:block">
+          
           {user ? (
             <button
               onClick={logOut}
@@ -142,6 +160,8 @@ const Navbar = () => {
             </div>
           )}
         </div>
+
+
       </div>
     </div>
   );
