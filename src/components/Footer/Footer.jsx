@@ -11,7 +11,7 @@ const Footer = () => {
   const borderColor = darkMode ? 'border-gray-700' : 'border-[#34495e]';
 
   return (
-    <div id="blogs-section">
+    <div >
       <footer className={`footer p-10 ${themeMode}`}>
         <aside>
           <div className="flex justify-center items-center">

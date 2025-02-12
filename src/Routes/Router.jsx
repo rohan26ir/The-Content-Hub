@@ -14,6 +14,7 @@ import SignIn from "../Account/SignIn";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import DetailsBlog from "../pages/DetailsBlog/DetailsBlog";
 import UpdateBlog from "../pages/Update/UpdateBlog";
+import Contact from "../pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/Wishlist",
         element: <PrivateRoute><Wishlist></Wishlist></PrivateRoute>
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>
       },
       {
         path: "/update-blog/:id",

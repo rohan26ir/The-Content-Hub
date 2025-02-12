@@ -94,7 +94,7 @@ const FeaturedBlogs = () => {
       </h2>
 
       {loading ? (
-        <div className="text-center text-gray-500">Loading...</div>
+        <span className="loading loading-ring loading-lg"></span>
       ) : error ? (
         <div className="text-center text-red-500">{error}</div>
       ) : blogs.length === 0 ? (

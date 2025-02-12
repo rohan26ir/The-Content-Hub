@@ -10,12 +10,14 @@ const Navbar = () => {
   const navItemColor = darkMode ? 'text-black' : 'text-black';
   const buttonPrimary = darkMode ? 'bg-[#FF5733] hover:bg-[#FF6F47]' : 'bg-[#FF5733] hover:bg-[#FF6F47]';
   const buttonSecondary = darkMode ? 'bg-[#C70039] hover:bg-[#D1003D]' : 'bg-[#C70039] hover:bg-[#D1003D]';
-  const buttonLogOut = darkMode ? 'bg-red-600 hover:bg-rose-700' : 'bg-red-600 hover:bg-rose-700';
+
+  const centerMode = darkMode ? "bg-sky-800" : "bg-base-200" ;
+  const buttonMode = darkMode ? "bg-sky-800 text-white" : "bg-gray-200 text-black" ;
 
   return (
-    <div className={`navbar px-3 ${themeMode}`}>
+    <div className={`navbar px-2 md:px-6 lg:px-10  ${themeMode} `}>
       {/* Navbar Start */}
-      <div className="navbar-start">
+      <div className="navbar-start ">
         {/* Hamburger Menu for Small Screens */}
         <div className="dropdown z-50">
           <button
@@ -52,7 +54,7 @@ const Navbar = () => {
             {user ? (
               <li><button
                 onClick={logOut}
-                className={`px-4 py-1 ${buttonLogOut} text-white font-semibold rounded-md`}
+                className={`px-4 py-1 ${buttonPrimary} font-semibold rounded-md`}
               >
                 Log Out
               </button></li>
@@ -80,7 +82,7 @@ const Navbar = () => {
               />
             </div>
             <div>
-              <p className="text-xl font-bold">{user ? user.displayName : 'User'}</p>
+              <p className="text-xl font-bold">{user ? user.displayName : ''}</p>
             </div>
           </div>
         </div>
@@ -88,13 +90,18 @@ const Navbar = () => {
 
       {/* Navbar Center */}
       <div className="navbar-center hidden lg:flex">
-        <div className="bg-base-200 p-2 rounded-box py-1 px-3">
+        <div className={`${centerMode} p-2 rounded-box py-1 px-3`}>
           <ul className="menu menu-horizontal px-1 gap-3">
             <li><NavLink to="/" className={navItemColor}>Home</NavLink></li>
-            <li><NavLink to="/Add-Blog" className={navItemColor}>Add Blog</NavLink></li>
+            {
+              user && <li><NavLink to="/Add-Blog" className={navItemColor}>Add Blog</NavLink></li>
+            }
             <li><NavLink to="/All-blogs" className={navItemColor}>All Blogs</NavLink></li>
             <li><NavLink to="/Featured-Blogs" className={navItemColor}>Featured Blogs</NavLink></li>
-            <li><NavLink to="/Wishlist" className={navItemColor}>Wishlist</NavLink></li>
+            {
+              user && <li><NavLink to="/Wishlist" className={navItemColor}>Wishlist</NavLink></li>
+            }
+            <li><NavLink to={'/contact'}  className={navItemColor}>Contact us</NavLink></li>
           </ul>
         </div>
       </div>
@@ -120,18 +127,18 @@ const Navbar = () => {
           {user ? (
             <button
               onClick={logOut}
-              className={`px-4 py-1 ${buttonLogOut} text-white font-semibold rounded-md`}
+              className={`px-4 py-1 ${buttonMode} font-semibold rounded-md`}
             >
               Log Out
             </button>
           ) : (
             <div className="flex gap-2">
-              <NavLink to="/Account/signup" className="btn btn-primary">
+              <NavLink to="/Account/signup" className={`${buttonMode} px-5 py-3 rounded-lg`}>
                 Sign Up
               </NavLink>
-              <NavLink to="/Account/signin" className="btn btn-secondary">
+              {/* <NavLink to="/Account/signin" className="btn btn-secondary">
                 Sign In
-              </NavLink>
+              </NavLink> */}
             </div>
           )}
         </div>

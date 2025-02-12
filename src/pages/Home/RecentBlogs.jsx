@@ -76,7 +76,7 @@ const RecentBlogs = () => {
   };
 
   return (
-    <div className={`container py-8 px-4 md:px-8 mx-auto ${themeMode}`}>
+    <div id="blogs-section" className={`container py-8 px-4 md:px-8 mx-auto ${themeMode}`}>
       <motion.div
         className="grid grid-cols-1 gap-10"
         initial={{ opacity: 0 }}

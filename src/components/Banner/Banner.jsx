@@ -8,7 +8,7 @@ const Banner = () => {
 
   const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
 
-
+  const textMode = darkMode ? "text-black" : "text-white";
 
   const handleExploreClick = () => {
     const targetSection = document.getElementById("blogs-section");
@@ -50,7 +50,7 @@ const Banner = () => {
       ></motion.div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center text-white h-full px-5">
+      <div className={`relative z-10 flex flex-col items-center justify-center text-center ${textMode} h-full px-5`}>
         <motion.h1
           className="text-4xl md:text-6xl font-bold mb-4"
           initial={{ opacity: 0, y: -50 }}
@@ -69,7 +69,7 @@ const Banner = () => {
         </motion.p>
         <motion.button
           onClick={handleExploreClick}
-          className="px-6 py-3 bg-blue-700 hover:bg-blue-900 rounded-lg font-semibold text-lg transition duration-300"
+          className="px-6 py-3 bg-blue-500 hover:bg-blue-900 rounded-lg font-semibold text-lg transition duration-300"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >

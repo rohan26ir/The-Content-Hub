@@ -76,7 +76,7 @@ const BlogCard = ({ blog }) => {
         />
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <Link to={`/blog/${_id}`}>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-600 transition-colors duration-300 transform">
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-500 transition-colors duration-300 transform">
               View Post
             </button>
           </Link>
@@ -108,7 +108,7 @@ const BlogCard = ({ blog }) => {
       <div className="px-6 pb-2 flex items-center justify-between">
         <div>
           <span className="text-sm font-medium text-blue-500 uppercase">
-            <span className="text-rose-600">Category:</span> {category}
+             {category}
           </span>
         </div>
       </div>

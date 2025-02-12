@@ -28,7 +28,7 @@ const TopBlog = () => {
     fetchFeaturedBlogs();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <progress className="progress w-56"></progress>;
   if (error) return <p>{error}</p>;
 
   return (

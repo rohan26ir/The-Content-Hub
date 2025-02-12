@@ -8,7 +8,9 @@ const Newsletter = () => {
   const { darkMode } = useAuth();
 
   const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
-  const inputBorderColor = darkMode ? 'border-gray-600' : 'border-gray-300'; // Border color for input
+  const inputBorderColor = darkMode ? 'border-gray-600' : 'border-gray-300';
+  const bgMode = darkMode ? 'bg-black' : 'bg-white';
+  const textMode = darkMode ? 'text-white' : 'text-black';
   const buttonHoverColor = darkMode ? 'hover:bg-[#1d4a6e]' : 'hover:bg-cyan-900'; // Hover color for button
   const textColor = darkMode ? 'text-gray-400' : 'text-gray-600'; // Text color for description and privacy link
 
@@ -31,7 +33,7 @@ const Newsletter = () => {
       <h3 className={`font-bold text-2xl text-center mb-4 ${darkMode ? 'text-white' : 'text-black'}`}>Newsletter</h3>
 
       <p className={`text-center font-medium ${textColor} mb-6`}>
-        Join <span className="text-cyan-800 font-bold">70,000</span> subscribers!
+        Join <span className="text-blue-500 font-bold">70,000</span> subscribers!
       </p>
 
       <form className="relative" onSubmit={handleSubmit}>
@@ -49,14 +51,14 @@ const Newsletter = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={`w-full py-3 pl-10 pr-4 rounded-lg border ${inputBorderColor} focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent`}
+            className={`w-full  ${bgMode} ${textMode} py-3 pl-10 pr-4 rounded-lg border ${inputBorderColor} focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent`}
             placeholder="Enter your email"
             required
           />
         </label>
         <button
           type="submit"
-          className={`w-full text-white py-3 mt-4 rounded-lg shadow-md ${buttonHoverColor} transition-all duration-300`}
+          className={`w-full ${textMode} text-black font-bold py-3 mt-4 rounded-lg shadow-md  transition-all duration-300`}
         >
           Subscribe
         </button>
@@ -64,7 +66,7 @@ const Newsletter = () => {
 
       <p className={`text-sm text-center mt-4 ${textColor}`}>
         By signing up, you agree to our{" "}
-        <a href="#" className="text-cyan-800 hover:underline">
+        <a href="#" className="text-blue-500 hover:underline">
           Privacy Policy
         </a>
       </p>

@@ -109,7 +109,7 @@ const Wishlist = () => {
       {error && <div className="text-center text-red-500 mb-4">{error}</div>}
 
       {loading ? (
-        <div className="text-center text-gray-500">Loading...</div>
+        <span className="loading loading-ring loading-lg"></span>
       ) : wishlist.length === 0 ? (
         <div className="text-center text-gray-500">Your wishlist is empty.</div>
       ) : (

@@ -38,7 +38,7 @@ const GetComment = ({ blogId, blogOwnerEmail }) => {
     },
   });
 
-  if (isLoading) return <p>Loading comments...</p>;
+  if (isLoading) return <span className="loading loading-ring loading-lg"></span>;
 
   return (
     <div className="mt-4">

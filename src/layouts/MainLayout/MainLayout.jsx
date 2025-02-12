@@ -13,18 +13,23 @@ const MainLayout = () => {
   const location = useLocation();
   const { darkMode } = useAuth();
 
-  const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
-  const headerFooterBg = darkMode ? 'bg-[#1f1f1f]' : 'bg-white'; // Dark header/footer bg
-  const contentBg = darkMode ? 'bg-[#181818]' : 'bg-white'; // Dark content bg
+  const themeMode = darkMode
+    ? "bg-[#292929] text-white"
+    : "bg-white text-black";
+  const headerFooterBg = darkMode ? "bg-[#1f1f1f]" : "bg-white"; // Dark header/footer bg
+  const contentBg = darkMode ? "bg-[#181818]" : "bg-white"; // Dark content bg
 
   return (
     <div className={`${themeMode} min-h-screen`}>
       {/* Header */}
-      <header className={`${headerFooterBg}`}>
+      <header className={`${headerFooterBg}  `}>
         <div>
           <HeadTitle />
-          <Navbar />
-          
+
+          <div className="sticky top-0 z-50 ">
+            <Navbar />
+          </div>
+
           {/* Render Banner only on the Home page */}
           {location.pathname === "/" && <LatestBlog />}
           {/* Render Banner only on the Home page */}
@@ -53,7 +58,7 @@ const MainLayout = () => {
           <DarkMode />
         </div>
       </div>
-      
+
       <div className="md:hidden">
         <div className="fixed right-2 bottom-0 transform -translate-y-1/2 z-50">
           <DarkMode />

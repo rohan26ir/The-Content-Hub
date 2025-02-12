@@ -29,7 +29,7 @@ const LatestBlog = () => {
   }, []);
 
   return (
-    <div className={`px-4 my-4 ${themeMode}`}>
+    <div className={`px-2 md:px-6 lg:px-10 my-4 ${themeMode}`}>
       {/* Title Section */}
       <div className="flex items-center gap-2">
         <p className={`px-4 py-1 rounded-md text-sm font-semibold shadow-lg ${titleTheme}`}>
@@ -50,7 +50,7 @@ const LatestBlog = () => {
                 </p>
               ))
             ) : (
-              <span>Loading latest blogs...</span>
+              <span className="loading loading-ring loading-lg"></span>
             )}
           </Marquee>
         </div>

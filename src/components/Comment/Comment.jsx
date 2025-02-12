@@ -11,6 +11,7 @@ const Comment = ({ blogOwnerEmail, blogId }) => {
 
   const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
   const formBg = darkMode ? 'bg-[#424242]' : 'bg-white';
+  const bgMode = darkMode ? 'bg-black' : 'bg-white';
   const textColor = darkMode ? 'text-white' : 'text-black';
   const borderColor = darkMode ? 'border-gray-600' : 'border-gray-300';
   const buttonColor = darkMode ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-600 hover:bg-blue-700';
@@ -97,7 +98,7 @@ const Comment = ({ blogOwnerEmail, blogId }) => {
                   id="comment"
                   name="comment"
                   type="text"
-                  className={`block w-full px-4 py-2 mt-2 ${textColor} bg-white border ${borderColor} rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none`}
+                  className={`block w-full px-4 py-2 mt-2 ${textColor} ${bgMode}  border ${borderColor} rounded-md focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none`}
                   placeholder="Enter your comment"
                   required
                 />

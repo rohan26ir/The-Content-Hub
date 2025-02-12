@@ -17,9 +17,9 @@ const DarkMode = () => {
           }`}
         >
           {darkMode ? (
-            <FaMoon className="text-yellow-400" size={16} />
+            <FaMoon className="text-white" size={16} />
           ) : (
-            <FaSun className="text-yellow-500" size={16} />
+            <FaSun className="text-blue-500" size={16} />
           )}
         </div>
       </div>
