@@ -8,7 +8,7 @@ const Navbar = () => {
   // Dark mode theme classes
   const themeMode = darkMode ? 'bg-[#292929] text-white' : 'bg-white text-black';
   const navItemColor = darkMode ? 'text-black' : 'text-black';
-  const buttonPrimary = darkMode ? 'bg-[#FF5733] hover:bg-[#FF6F47]' : 'bg-[#FF5733] hover:bg-[#FF6F47]';
+  const buttonPrimary = darkMode ? 'bg-[#3B82F6] hover:bg-[#FF6F47]' : 'bg-[#3B82F6] hover:bg-[#FF6F47]';
   const buttonSecondary = darkMode ? 'bg-[#C70039] hover:bg-[#D1003D]' : 'bg-[#C70039] hover:bg-[#D1003D]';
 
   const centerMode = darkMode ? "bg-sky-800" : "bg-base-200" ;
