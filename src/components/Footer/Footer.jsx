@@ -19,7 +19,7 @@ const Footer = () => {
               <img 
                 src={logo} 
                 className={`rounded-full h-16 border-2 ${borderColor}`} 
-                alt="The Content Hub Logo" 
+                alt="Content Hub Logo" 
               />
             </div>
           </div>
