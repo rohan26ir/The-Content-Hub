@@ -7,25 +7,41 @@ const Error = () => {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center min-h-screen text-center p-5 ${
-        darkMode ? "bg-[#1a1a1a] text-white" : "bg-gray-100 text-gray-900"
+      className={`flex flex-col items-center justify-center min-h-screen text-center p-6 transition-colors duration-300 ${
+        darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
       }`}
     >
-      <h1 className="text-9xl font-extrabold tracking-widest">404</h1>
-      <p className="text-2xl md:text-3xl font-semibold mt-4">
-        Oops! The page you're looking for doesn't exist.
-      </p>
-      <p className="mt-2 text-lg text-gray-500 dark:text-gray-400">
-        It may have been moved or deleted.
-      </p>
+      {/* 404 Graphic */}
+      <div className="relative mb-8">
+        <h1 className="text-9xl md:text-[12rem] font-extrabold tracking-widest animate-pulse">
+          404
+        </h1>
+      </div>
 
-    
+      {/* Error Message */}
+      <h2
+        className={`text-3xl md:text-4xl font-bold mb-4 ${
+          darkMode ? "text-gray-200" : "text-gray-800"
+        }`}
+      >
+        Page Not Found
+      </h2>
+      <p
+        className={`text-lg md:text-xl max-w-md mb-6 ${
+          darkMode ? "text-gray-400" : "text-gray-500"
+        }`}
+      >
+        Oops! The page you're looking for doesn't exist or has been moved.
+      </p>
 
       {/* Back to Home Button */}
       <Link
         to="/"
-        className="mt-6 px-6 py-3 text-lg font-semibold rounded-lg shadow-md transition-all 
-          bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400"
+        className={`px-8 py-3 text-lg font-semibold rounded-full shadow-lg transition-transform duration-300 transform hover:scale-105 ${
+          darkMode
+            ? "bg-blue-500 text-white hover:bg-blue-600"
+            : "bg-blue-600 text-white hover:bg-blue-700"
+        }`}
       >
         Back to Home
       </Link>
