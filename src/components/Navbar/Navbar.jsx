@@ -71,21 +71,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Logo and User Info
-        <div className="hidden md:block">
-          <div className="flex items-center gap-2">
-            <div>
-              <img
-                className="h-10 w-10 rounded-full ml-3"
-                src={user ? user?.photoURL : "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
-                alt={user ? `${user.displayName} Avatar` : "User Avatar"}
-              />
-            </div>
-            <div>
-              <p className="text-xl font-bold">{user ? user.displayName : ''}</p>
-            </div>
-          </div>
-        </div> */}
+        
 
         <div>
           <Link to={'/'}><h2 className=" text-lg md:text-2xl font-bold">Content Hub</h2></Link>
@@ -154,9 +140,6 @@ const Navbar = () => {
               <NavLink to="/Account/signup" className={`${buttonMode} px-5 py-3 rounded-lg`}>
                 Sign Up
               </NavLink>
-              {/* <NavLink to="/Account/signin" className="btn btn-secondary">
-                Sign In
-              </NavLink> */}
             </div>
           )}
         </div>
